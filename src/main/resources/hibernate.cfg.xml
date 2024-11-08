@@ -4,14 +4,13 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <!-- Hibernate Dialect for MariaDB -->
-        <property name="hibernate.dialect">org.hibernate.dialect.MariaDBDialect</property>
+
 
         <!-- JDBC Driver Class -->
         <property name="hibernate.connection.driver_class">org.mariadb.jdbc.Driver</property>
 
         <!-- Database Connection URL -->
-        <property name="hibernate.connection.url">jdbc:mariadb://localhost:3306/Students</property>
+        <property name="hibernate.connection.url">jdbc:mariadb://localhost:3306/MayurData</property>
 
         <!-- Database Credentials -->
         <property name="hibernate.connection.username">root</property>

@@ -117,6 +117,24 @@ public class StudentOperations {
             }
         }
     }
+    public void addCourseToStudent(Long studentId, Long courseId) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            Student student = session.get(Student.class, studentId);
+            Course course = session.get(Course.class, courseId);
+
+            if (student != null && course != null) {
+                student.addCourse(course);
+                session.update(student);
+                transaction.commit();
+                System.out.println("Course added to student successfully.");
+            } else {
+                System.out.println("Student or Course not found.");
+            }
+        }
+    }
+
 
     private boolean isValidEmail(String email) {
         return EMAIL_PATTERN.matcher(email).matches();

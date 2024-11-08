@@ -18,10 +18,10 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    studentMenu(scanner, studentOps);
+                    studentMenu(scanner, studentOps, courseOps);
                     break;
                 case 2:
-                    courseMenu(scanner, courseOps);
+                    courseMenu(scanner, studentOps, courseOps);
                     break;
                 case 3:
                     System.out.println("Exiting the application...");
@@ -32,7 +32,7 @@ public class Main {
         }
     }
 
-    private static void studentMenu(Scanner scanner, StudentOperations studentOps) {
+    private static void studentMenu(Scanner scanner, StudentOperations studentOps, CourseOperations courseOps) {
         while (true) {
             System.out.println("\nStudent Operations:");
             System.out.println("1. Create Student");
@@ -40,7 +40,8 @@ public class Main {
             System.out.println("3. Retrieve Student by ID");
             System.out.println("4. Update Student");
             System.out.println("5. Delete Student");
-            System.out.println("6. Back to Main Menu");
+            System.out.println("6. Add Course to Student");
+            System.out.println("7. Back to Main Menu");
             System.out.print("Choose an option: ");
             int choice = scanner.nextInt();
 
@@ -61,6 +62,13 @@ public class Main {
                     studentOps.deleteStudent();
                     break;
                 case 6:
+                    System.out.print("Enter Student ID: ");
+                    Long studentId = scanner.nextLong();
+                    System.out.print("Enter Course ID to add: ");
+                    Long courseId = scanner.nextLong();
+                    studentOps.addCourseToStudent(studentId, courseId);
+                    break;
+                case 7:
                     return;
                 default:
                     System.out.println("Invalid choice. Please try again.");
@@ -68,7 +76,7 @@ public class Main {
         }
     }
 
-    private static void courseMenu(Scanner scanner, CourseOperations courseOps) {
+    private static void courseMenu(Scanner scanner, StudentOperations studentOps, CourseOperations courseOps) {
         while (true) {
             System.out.println("\nCourse Operations:");
             System.out.println("1. Create Course");
@@ -76,7 +84,8 @@ public class Main {
             System.out.println("3. Retrieve Course by ID");
             System.out.println("4. Update Course");
             System.out.println("5. Delete Course");
-            System.out.println("6. Back to Main Menu");
+            System.out.println("6. Add Student to Course");
+            System.out.println("7. Back to Main Menu");
             System.out.print("Choose an option: ");
             int choice = scanner.nextInt();
 
@@ -97,6 +106,13 @@ public class Main {
                     courseOps.deleteCourse();
                     break;
                 case 6:
+                    System.out.print("Enter Course ID: ");
+                    Long courseId = scanner.nextLong();
+                    System.out.print("Enter Student ID to add: ");
+                    Long studentId = scanner.nextLong();
+                    courseOps.addStudentToCourse(courseId, studentId);
+                    break;
+                case 7:
                     return;
                 default:
                     System.out.println("Invalid choice. Please try again.");

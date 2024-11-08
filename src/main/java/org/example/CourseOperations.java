@@ -89,4 +89,22 @@ public class CourseOperations {
             }
         }
     }
+    public void addStudentToCourse(Long courseId, Long studentId) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            Course course = session.get(Course.class, courseId);
+            Student student = session.get(Student.class, studentId);
+
+            if (course != null && student != null) {
+                course.addStudent(student);
+                session.update(course);
+                transaction.commit();
+                System.out.println("Student added to course successfully.");
+            } else {
+                System.out.println("Student or Course not found.");
+            }
+        }
+    }
+
 }
