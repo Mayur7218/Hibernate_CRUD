@@ -41,7 +41,8 @@ public class Main {
             System.out.println("4. Update Student");
             System.out.println("5. Delete Student");
             System.out.println("6. Add Course to Student");
-            System.out.println("7. Back to Main Menu");
+            System.out.println("7. Remove Course from Student"); // New option
+            System.out.println("8. Back to Main Menu");
             System.out.print("Choose an option: ");
             int choice = scanner.nextInt();
 
@@ -69,6 +70,13 @@ public class Main {
                     studentOps.addCourseToStudent(studentId, courseId);
                     break;
                 case 7:
+                    System.out.print("Enter Student ID: ");
+                    studentId = scanner.nextLong();
+                    System.out.print("Enter Course ID to remove: ");
+                    courseId = scanner.nextLong();
+                    studentOps.removeCourseFromStudent(studentId, courseId);
+                    break;
+                case 8:
                     return;
                 default:
                     System.out.println("Invalid choice. Please try again.");
@@ -85,7 +93,8 @@ public class Main {
             System.out.println("4. Update Course");
             System.out.println("5. Delete Course");
             System.out.println("6. Add Student to Course");
-            System.out.println("7. Back to Main Menu");
+            System.out.println("7. Remove Student from Course"); // New option
+            System.out.println("8. Back to Main Menu");
             System.out.print("Choose an option: ");
             int choice = scanner.nextInt();
 
@@ -113,6 +122,13 @@ public class Main {
                     courseOps.addStudentToCourse(courseId, studentId);
                     break;
                 case 7:
+                    System.out.print("Enter Course ID: ");
+                    courseId = scanner.nextLong();
+                    System.out.print("Enter Student ID to remove: ");
+                    studentId = scanner.nextLong();
+                    courseOps.removeStudentFromCourse(courseId, studentId);
+                    break;
+                case 8:
                     return;
                 default:
                     System.out.println("Invalid choice. Please try again.");

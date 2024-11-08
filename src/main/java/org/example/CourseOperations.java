@@ -106,5 +106,26 @@ public class CourseOperations {
             }
         }
     }
+    public void removeStudentFromCourse(Long courseId, Long studentId) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            Course course = session.get(Course.class, courseId);
+            Student student = session.get(Student.class, studentId);
+
+            if (course != null && student != null) {
+                if (course.getStudents().contains(student)) {
+                    course.removeStudent(student); // Remove the student from the course’s list
+                    session.update(course); // Update the course in the database
+                    transaction.commit();
+                    System.out.println("Student removed from course successfully.");
+                } else {
+                    System.out.println("The course does not have this student enrolled.");
+                }
+            } else {
+                System.out.println("Student or Course not found.");
+            }
+        }
+    }
 
 }
